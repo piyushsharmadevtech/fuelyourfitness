@@ -136,11 +136,12 @@ function jar(b,c,n){
   t.forEach(function(x,i){s+='<text x="60" y="'+(ty+i*11)+'" text-anchor="middle" font-family="Barlow,Arial,sans-serif" font-weight="600" font-size="8.5" fill="'+tx+'">'+esc(x.toUpperCase())+'</text>'});
   return s+'</svg>';
 }
+var LOGO_DIR=""; // "" = logos sit next to index.html; use "logos/" if you keep them in a folder
 var EXT=["png","webp","svg","jpg"];
 function slug(b){return b.toLowerCase().replace(/[^a-z0-9]+/g,"-")}
 var FULL={"as-it-is":1,"avvatar":1};
-function logoImg(b,cls){return '<img class="'+cls+(FULL[slug(b)]?" full":"")+'" alt="" data-s="'+slug(b)+'" data-i="0" src="logos/'+slug(b)+'.png" onerror="nextLogo(this)">'}
-function nextLogo(i){var n=+i.dataset.i+1;if(n<EXT.length){i.dataset.i=n;i.src="logos/"+i.dataset.s+"."+EXT[n]}else i.remove()}
+function logoImg(b,cls){return '<img class="'+cls+(FULL[slug(b)]?" full":"")+'" alt="" data-s="'+slug(b)+'" data-i="0" src="'+LOGO_DIR+slug(b)+'.png" onerror="nextLogo(this)">'}
+function nextLogo(i){var n=+i.dataset.i+1;if(n<EXT.length){i.dataset.i=n;i.src=LOGO_DIR+i.dataset.s+"."+EXT[n]}else i.remove()}
 var brand="All",cat=-1,q="";
 var grid=document.getElementById("grid");
 function tile(label,inner,cls,key,type){return '<button class="tile" data-t="'+type+'" data-k="'+esc(key)+'" aria-pressed="false"><div class="ic '+cls+'">'+inner+'</div><span>'+esc(label)+'</span></button>'}
@@ -172,4 +173,3 @@ render();
 </script>
 </body>
 </html>
-
