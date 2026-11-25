@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +34,10 @@ h2{font:italic 900 clamp(28px,6vw,40px)/1 var(--head);margin:30px 0 14px;text-tr
 .tile{flex:none;width:112px;text-align:center;background:none;border:0;cursor:pointer;padding:0}
 .tile .ic{display:grid;place-items:center;aspect-ratio:1;border-radius:22px;border:2px solid var(--line);background:linear-gradient(160deg,#222,#0b0b0b);overflow:hidden}
 .tile .ic svg{width:80%;height:auto}
-.tile .ic.br{border-radius:50%;font:italic 900 26px var(--head)}
+.tile .ic.br{border-radius:50%;font:italic 900 26px var(--head);position:relative}
+.blogo{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;padding:14%;border-radius:50%}
+.blogo.full,.bl.full{padding:0;object-fit:cover}
+.bdg{position:relative;overflow:hidden}.bdg .bl{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;padding:2px;border-radius:50%}
 .tile span{display:block;margin-top:8px;font-size:14px;font-weight:500}
 .tile[aria-pressed="true"] .ic{border-color:var(--red);box-shadow:0 0 0 2px var(--red)}
 .chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-bottom:16px}
@@ -132,10 +136,15 @@ function jar(b,c,n){
   t.forEach(function(x,i){s+='<text x="60" y="'+(ty+i*11)+'" text-anchor="middle" font-family="Barlow,Arial,sans-serif" font-weight="600" font-size="8.5" fill="'+tx+'">'+esc(x.toUpperCase())+'</text>'});
   return s+'</svg>';
 }
+var EXT=["png","webp","svg","jpg"];
+function slug(b){return b.toLowerCase().replace(/[^a-z0-9]+/g,"-")}
+var FULL={"as-it-is":1,"avvatar":1};
+function logoImg(b,cls){return '<img class="'+cls+(FULL[slug(b)]?" full":"")+'" alt="" data-s="'+slug(b)+'" data-i="0" src="logos/'+slug(b)+'.png" onerror="nextLogo(this)">'}
+function nextLogo(i){var n=+i.dataset.i+1;if(n<EXT.length){i.dataset.i=n;i.src="logos/"+i.dataset.s+"."+EXT[n]}else i.remove()}
 var brand="All",cat=-1,q="";
 var grid=document.getElementById("grid");
 function tile(label,inner,cls,key,type){return '<button class="tile" data-t="'+type+'" data-k="'+esc(key)+'" aria-pressed="false"><div class="ic '+cls+'">'+inner+'</div><span>'+esc(label)+'</span></button>'}
-document.getElementById("brandRow").innerHTML=Object.keys(B).map(function(b){var d=B[b];return tile(b,'<span style="color:'+(d[2]==="#111"?"#111":d[2])+'">'+esc(d[0])+'</span>',"br",b,"b").replace('class="ic br"','class="ic br" style="background:'+d[1]+'"')}).join("");
+document.getElementById("brandRow").innerHTML=Object.keys(B).map(function(b){var d=B[b];return tile(b,'<span style="color:'+(d[2]==="#111"?"#111":d[2])+'">'+esc(d[0])+'</span>'+logoImg(b,"blogo"),"br",b,"b").replace('class="ic br"','class="ic br" style="background:'+d[1]+'"')}).join("");
 var rep=[[0,"MuscleTech"],[1,"MuscleTech"],[2,"Optimum Nutrition"],[3,"MuscleTech"],[4,"Optimum Nutrition"],[5,"Optimum Nutrition"],[6,"Optimum Nutrition"]];
 document.getElementById("catRow").innerHTML=C.map(function(c,i){return tile(c,jar(rep[i][1],i,C[i]),"",i,"c")}).join("");
 var chips=document.getElementById("chips");
@@ -147,7 +156,7 @@ function sync(){
 function render(){
   var t=q.toLowerCase();
   var L=P.filter(function(p){return(brand==="All"||p.b===brand)&&(cat<0||p.c===cat)&&(p.b+" "+p.n+" "+C[p.c]).toLowerCase().indexOf(t)>-1});
-  grid.innerHTML=L.length?L.map(function(p,i){return '<article class="card"><div class="pic"><span class="tag">'+esc(C[p.c])+'</span>'+jar(p.b,p.c,p.n)+'</div><div class="info"><small><i class="bdg" style="background:'+B[p.b][1]+';color:'+B[p.b][2]+'">'+esc(B[p.b][0])+'</i> '+esc(p.b)+'</small><h3>'+esc(p.n)+'</h3><a class="btn" href="https://ig.me/m/fuelyourfitness.in" target="_blank" rel="noopener" data-m="'+esc("Hi! I want to order "+p.b+" "+p.n)+'">Order on Instagram</a></div></article>'}).join(""):'<p class="empty">No product found. Message us and we will check availability.</p>';
+  grid.innerHTML=L.length?L.map(function(p,i){return '<article class="card"><div class="pic"><span class="tag">'+esc(C[p.c])+'</span>'+jar(p.b,p.c,p.n)+'</div><div class="info"><small><i class="bdg" style="background:'+B[p.b][1]+';color:'+B[p.b][2]+'">'+esc(B[p.b][0])+logoImg(p.b,"bl")+'</i> '+esc(p.b)+'</small><h3>'+esc(p.n)+'</h3><a class="btn" href="https://ig.me/m/fuelyourfitness.in" target="_blank" rel="noopener" data-m="'+esc("Hi! I want to order "+p.b+" "+p.n)+'">Order on Instagram</a></div></article>'}).join(""):'<p class="empty">No product found. Message us and we will check availability.</p>';
   sync();
 }
 function toShop(){document.getElementById("shop").scrollIntoView()}
@@ -163,3 +172,4 @@ render();
 </script>
 </body>
 </html>
+
