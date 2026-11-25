@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="logo.jpg"><meta property="og:image" content="logo.jpg"><meta name="theme-color" content="#070707"><title>Fuel Your Fitness – Genuine Supplements Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,800;1,900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070707;--card:#131313;--line:#262626;--text:#f4f4f4;--mute:#a3a3a3;--red:#e50914;--red2:#ff3b30;--head:"Barlow Condensed","Arial Narrow",Impact,sans-serif;--body:"Barlow","Segoe UI",Arial,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:130px}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 var(--body);padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--red2);outline-offset:2px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:#141212;border-bottom:1px solid var(--line);padding:10px 0 12px}
+.top{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px}
+.top img{width:42px;height:42px;border-radius:50%}
+.top b{font:italic 900 26px var(--head);letter-spacing:.5px}
+.top b i{color:var(--red);font-style:italic}
+.search{width:100%;background:#fff;color:#111;border:0;border-radius:10px;padding:12px 14px;font:16px var(--body)}
+.hero{margin:16px 0;border-radius:18px;padding:26px 22px;background:radial-gradient(circle at 85% 20%,rgba(255,59,48,.55),transparent 55%),linear-gradient(135deg,#1a0000,#070707);border:1px solid #3a0a0a;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.hero h1{margin:0;font:italic 900 clamp(38px,9vw,70px)/.9 var(--head);text-transform:uppercase}
+.hero h1 span{color:var(--red);display:block}
+.hero p{margin:10px 0 16px;color:var(--mute);max-width:40ch}
+.hero img{width:clamp(96px,22vw,200px);border-radius:50%;box-shadow:0 0 40px rgba(229,9,20,.5)}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--red);color:#fff;font:600 15px var(--body);padding:11px 20px;border-radius:8px;border:0;cursor:pointer}
+.btn:hover{background:var(--red2)}
+.strip{overflow:hidden;border-block:2px solid var(--red);padding:14px 0;font:600 15px var(--body);white-space:nowrap;background:#0c0c0c}.mq{display:flex;width:max-content;animation:mq 24s linear infinite}.strip:hover .mq{animation-play-state:paused}.mq span{padding-right:44px}.mq span::before{content:"";display:inline-block;width:8px;height:8px;background:var(--red);border-radius:50%;margin-right:10px}@keyframes mq{to{transform:translateX(-50%)}}@media(prefers-reduced-motion:reduce){.mq{animation:none}.strip{overflow-x:auto}}.btn.ghost{background:transparent;border:1px solid #666}.btn.ghost:hover{border-color:var(--red);background:transparent}.hero .cta{display:flex;gap:10px;flex-wrap:wrap}.bdg{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 4px;border-radius:50%;font:italic 900 11px var(--head);vertical-align:middle;margin-right:4px}
+.strip::-webkit-scrollbar,.row::-webkit-scrollbar,.chips::-webkit-scrollbar{display:none}
+h2{font:italic 900 clamp(28px,6vw,40px)/1 var(--head);margin:30px 0 14px;text-transform:uppercase}
+.row{display:flex;gap:14px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.tile{flex:none;width:112px;text-align:center;background:none;border:0;cursor:pointer;padding:0}
+.tile .ic{display:grid;place-items:center;aspect-ratio:1;border-radius:22px;border:2px solid var(--line);background:linear-gradient(160deg,#222,#0b0b0b);overflow:hidden}
+.tile .ic svg{width:80%;height:auto}
+.tile .ic.br{border-radius:50%;font:italic 900 26px var(--head)}
+.tile span{display:block;margin-top:8px;font-size:14px;font-weight:500}
+.tile[aria-pressed="true"] .ic{border-color:var(--red);box-shadow:0 0 0 2px var(--red)}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-bottom:16px}
+.chip{flex:none;background:#fff;color:#111;border:0;border-radius:99px;padding:9px 18px;font:600 14px var(--body);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--red);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr);gap:16px}}
+@media(min-width:1000px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.card:hover{border-color:var(--red)}
+.pic{background:radial-gradient(circle at 50% 40%,#2b2b2b,#0c0c0c);padding:12px 8px 0;position:relative}
+.pic svg{display:block;width:78%;margin:0 auto}
+.tag{position:absolute;top:8px;left:8px;background:rgba(229,9,20,.18);color:#ff7a72;font-size:11px;padding:2px 9px;border-radius:99px}
+.info{padding:12px;display:flex;flex-direction:column;flex:1}
+.info small{color:var(--mute);font-size:13px}
+.info h3{margin:2px 0 0;font:600 15px/1.3 var(--body)}
+.info .btn{margin-top:12px;font-size:14px;padding:9px}
+.empty{grid-column:1/-1;text-align:center;color:var(--mute);padding:30px 0}
+.note{color:var(--mute);font-size:13px;text-align:center;padding:26px 0 8px}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fff;color:#444;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 0 calc(8px + env(safe-area-inset-bottom,0px));border-top:1px solid #ddd}
+nav a{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;letter-spacing:.5px;text-transform:uppercase;cursor:pointer}
+nav svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8}
+nav a.on{color:var(--red)}
+footer{border-top:1px solid var(--line);padding:20px 0;color:var(--mute);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="top"><img data-logo alt="Fuel Your Fitness logo"><b>FUEL YOUR <i>FITNESS</i></b></div>
+  <input class="search" id="q" type="search" placeholder="Search brand or product" aria-label="Search">
+</div></header>
+
+<main class="wrap" id="top">
+  <section class="hero">
+    <div>
+      <h1>Train hard<span>Fuel better</span></h1>
+      <p>100% genuine supplements from all major brands. Delivered all over India.</p>
+      <div class="cta"><a class="btn" href="#shop">Shop now</a><a class="btn ghost" href="https://www.instagram.com/fuelyourfitness.in/" target="_blank" rel="noopener">Follow on Instagram</a></div>
+    </div>
+    <img data-logo alt="">
+  </section>
+</main>
+<div class="strip"><div class="mq" id="mq"><span>100% Authentic</span><span>Best Prices</span><span>All Major Brands</span><span>Fast Delivery</span><span>All India Shipping</span><span>Trusted Brands</span></div></div>
+
+<div class="wrap">
+  <h2 id="brands">Shop by brand</h2>
+  <div class="row" id="brandRow"></div>
+  <h2 id="cats">Shop by category</h2>
+  <div class="row" id="catRow"></div>
+
+  <h2 id="shop">Bestsellers</h2>
+  <div class="chips" id="chips"></div>
+  <div class="grid" id="grid" aria-live="polite"></div>
+  <p class="note">For prices and availability, message us on <a href="https://www.instagram.com/fuelyourfitness.in/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">Instagram</a>.</p>
+</div>
+
+<footer><div class="wrap"><b>Fuel Your Fitness</b> · <a href="https://www.instagram.com/fuelyourfitness.in/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">@fuelyourfitness.in</a><br>Brand names belong to their owners. Product images are illustrations. Consult a doctor before using supplements if you have a medical condition.</div></footer>
+
+<nav>
+  <a class="on" href="#top"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v10h-6v-6H9v6H3z"/></svg>Home</a>
+  <a href="#brands"><svg viewBox="0 0 24 24"><path d="M3 3h8l10 10-8 8L3 11z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg>Brands</a>
+  <a href="#cats"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Category</a>
+  <a href="https://ig.me/m/fuelyourfitness.in" target="_blank" rel="noopener" data-m="Hi! I want to order supplements."><svg viewBox="0 0 24 24"><path d="M21 4H3v13h5v4l5-4h8z"/></svg>Order</a>
+</nav>
+
+<script>
+var LOGO="logo.jpg";
+document.querySelectorAll("[data-logo]").forEach(function(i){i.src=LOGO});
+var C=["Whey Protein","Mass Gainer","Creatine","Pre-Workout","BCAA / EAA","Multivitamin","Fish Oil & More"];
+// brand: [label, colour, text colour, [[category index, product name]...]]
+var B={
+"MuscleBlaze":["MB","#f5b800","#111",[[0,"Biozyme Performance Whey"],[0,"Whey Gold Isolate"],[1,"Mass Gainer XXL"],[2,"CreAMP Creatine"],[3,"Pre-Workout 300"],[4,"BCAA Pro"],[5,"Multivitamin"],[6,"Fish Oil Omega 3"]]],
+"GNC":["GNC","#0057b8","#fff",[[0,"Pro Performance 100% Whey"],[1,"Pro Performance Weight Gainer"],[2,"Creatine Monohydrate"],[4,"BCAA 5000"],[5,"Mega Men Multivitamin"],[6,"Triple Strength Fish Oil"]]],
+"AS-IT-IS":["AS","#2f9e44","#fff",[[0,"Whey Protein Concentrate"],[0,"Whey Protein Isolate"],[1,"Mass Gainer"],[2,"Creatine Monohydrate"],[4,"BCAA 2:1:1"]]],
+"Atom":["AT","#ff6a00","#fff",[[0,"Whey Protein"],[1,"Mass Gainer"],[2,"Creatine Monohydrate"],[3,"Pre-Workout"],[4,"BCAA"]]],
+"Big Muscles":["BM","#c1121f","#fff",[[0,"Nitro Whey"],[0,"Premium Gold Whey"],[1,"Mass Gainer"],[2,"Creatine Monohydrate"],[3,"Pre-Workout"]]],
+"Optimum Nutrition":["ON","#111","#e50914",[[0,"Gold Standard 100% Whey"],[1,"Serious Mass"],[2,"Micronized Creatine"],[3,"Gold Standard Pre-Workout"],[4,"Amino Energy"],[5,"Opti-Men"],[6,"Fish Oil"]]],
+"Avvatar":["AV","#ef5a1a","#fff",[[0,"Whey Protein"],[0,"Whey Isolate"],[1,"Mass Gainer"],[2,"Creatine Monohydrate"],[3,"Pre-Workout"]]],
+"MuscleTech":["MT","#e50914","#fff",[[0,"Nitro-Tech Whey"],[1,"Mass-Tech Extreme 2000"],[2,"Platinum Creatine"],[3,"Vapor X5"],[4,"Essential BCAA"],[5,"Platinum Multivitamin"]]],
+"Wellcore":["WC","#12a37f","#fff",[[0,"Whey Protein Concentrate"],[0,"Whey Isolate"],[1,"Mass Gainer"],[2,"Micronised Creatine"],[3,"Pre-Workout"]]],
+"Dymatize":["DY","#1d3fbb","#fff",[[0,"ISO100 Hydrolyzed"],[1,"Super Mass Gainer"],[2,"Creatine Monohydrate"]]],
+"BPI Sports":["BPI","#00a3e0","#fff",[[3,"Best Pre-Workout"],[4,"Best BCAA"],[0,"Whey HD"]]],
+"MyProtein":["MP","#1b2a49","#fff",[[0,"Impact Whey Protein"],[2,"Creatine Monohydrate"],[4,"Essential EAA"],[5,"Daily Vitamins"]]]
+};
+var P=[];Object.keys(B).forEach(function(b){B[b][3].forEach(function(p){P.push({b:b,c:p[0],n:p[1]})})});
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function lines(s){var w=s.split(" "),o=[],l="";w.forEach(function(x){if((l+" "+x).trim().length>11&&l){o.push(l);l=x}else l=(l+" "+x).trim()});o.push(l);return o.slice(0,3)}
+function jar(b,c,n){
+  var d=B[b],col=d[1],tx=d[2],bottle=c>=5,t=lines(n);
+  var ty=bottle?96:92,s='<svg viewBox="0 0 120 150" role="img" aria-label="'+esc(b+" "+n)+'">';
+  s+='<ellipse cx="60" cy="144" rx="42" ry="5" fill="#000" opacity=".5"/>';
+  if(bottle){s+='<rect x="42" y="10" width="36" height="16" rx="4" fill="#f4f4f4"/><rect x="30" y="26" width="60" height="114" rx="14" fill="#222" stroke="#444"/><rect x="30" y="58" width="60" height="62" fill="'+col+'"/>';}
+  else{s+='<rect x="30" y="8" width="60" height="18" rx="5" fill="#0d0d0d" stroke="#444"/><rect x="22" y="26" width="76" height="114" rx="12" fill="#1b1b1b" stroke="#444"/><rect x="22" y="26" width="76" height="14" fill="'+col+'"/><rect x="22" y="52" width="76" height="76" fill="'+col+'"/>';}
+  s+='<rect x="28" y="30" width="6" height="106" rx="3" fill="#fff" opacity=".1"/>';
+  var W=b.toUpperCase(),fs=Math.max(11,Math.min(26,Math.floor(120/W.length)));s+='<text x="60" y="'+(bottle?82:78)+'" text-anchor="middle" textLength="'+Math.min(64,Math.round(W.length*fs*.62))+'" lengthAdjust="spacingAndGlyphs" font-family="Barlow Condensed,Impact,sans-serif" font-style="italic" font-weight="900" font-size="'+fs+'" fill="'+tx+'">'+esc(W)+'</text>';
+  t.forEach(function(x,i){s+='<text x="60" y="'+(ty+i*11)+'" text-anchor="middle" font-family="Barlow,Arial,sans-serif" font-weight="600" font-size="8.5" fill="'+tx+'">'+esc(x.toUpperCase())+'</text>'});
+  return s+'</svg>';
+}
+var brand="All",cat=-1,q="";
+var grid=document.getElementById("grid");
+function tile(label,inner,cls,key,type){return '<button class="tile" data-t="'+type+'" data-k="'+esc(key)+'" aria-pressed="false"><div class="ic '+cls+'">'+inner+'</div><span>'+esc(label)+'</span></button>'}
+document.getElementById("brandRow").innerHTML=Object.keys(B).map(function(b){var d=B[b];return tile(b,'<span style="color:'+(d[2]==="#111"?"#111":d[2])+'">'+esc(d[0])+'</span>',"br",b,"b").replace('class="ic br"','class="ic br" style="background:'+d[1]+'"')}).join("");
+var rep=[[0,"MuscleTech"],[1,"MuscleTech"],[2,"Optimum Nutrition"],[3,"MuscleTech"],[4,"Optimum Nutrition"],[5,"Optimum Nutrition"],[6,"Optimum Nutrition"]];
+document.getElementById("catRow").innerHTML=C.map(function(c,i){return tile(c,jar(rep[i][1],i,C[i]),"",i,"c")}).join("");
+var chips=document.getElementById("chips");
+chips.innerHTML='<button class="chip" data-k="-1" aria-pressed="true">Shop All</button>'+C.map(function(c,i){return '<button class="chip" data-k="'+i+'" aria-pressed="false">'+c+'</button>'}).join("");
+function sync(){
+  document.querySelectorAll(".tile").forEach(function(t){t.setAttribute("aria-pressed",(t.dataset.t==="b"&&t.dataset.k===brand)||(t.dataset.t==="c"&&+t.dataset.k===cat))});
+  [].forEach.call(chips.children,function(c){c.setAttribute("aria-pressed",+c.dataset.k===cat)});
+}
+function render(){
+  var t=q.toLowerCase();
+  var L=P.filter(function(p){return(brand==="All"||p.b===brand)&&(cat<0||p.c===cat)&&(p.b+" "+p.n+" "+C[p.c]).toLowerCase().indexOf(t)>-1});
+  grid.innerHTML=L.length?L.map(function(p,i){return '<article class="card"><div class="pic"><span class="tag">'+esc(C[p.c])+'</span>'+jar(p.b,p.c,p.n)+'</div><div class="info"><small><i class="bdg" style="background:'+B[p.b][1]+';color:'+B[p.b][2]+'">'+esc(B[p.b][0])+'</i> '+esc(p.b)+'</small><h3>'+esc(p.n)+'</h3><a class="btn" href="https://ig.me/m/fuelyourfitness.in" target="_blank" rel="noopener" data-m="'+esc("Hi! I want to order "+p.b+" "+p.n)+'">Order on Instagram</a></div></article>'}).join(""):'<p class="empty">No product found. Message us and we will check availability.</p>';
+  sync();
+}
+function toShop(){document.getElementById("shop").scrollIntoView()}
+document.addEventListener("click",function(e){
+  var o=e.target.closest("a[data-m]");if(o){try{navigator.clipboard.writeText(o.dataset.m)}catch(x){}return}
+  var t=e.target.closest(".tile");
+  if(t){if(t.dataset.t==="b"){brand=brand===t.dataset.k?"All":t.dataset.k}else{cat=cat===+t.dataset.k?-1:+t.dataset.k}render();toShop();return}
+  var c=e.target.closest(".chip");if(c){cat=+c.dataset.k;render();return}
+});
+document.getElementById("q").addEventListener("input",function(e){q=e.target.value;render()});
+var mq=document.getElementById("mq");mq.innerHTML+=mq.innerHTML;
+render();
+</script>
+</body>
+</html>

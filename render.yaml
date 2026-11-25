@@ -1,0 +1,5 @@
+services:
+  - type: web
+    name: fuel-your-fitness
+    runtime: static
+    staticPublishPath: .
