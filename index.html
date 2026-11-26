@@ -19,7 +19,7 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:#1
 .top img{width:42px;height:42px;border-radius:50%}
 .top b{font:italic 900 26px var(--head);letter-spacing:.5px}
 .top b i{color:var(--red);font-style:italic}
-.search{width:100%;background:#fff;color:#111;border:0;border-radius:10px;padding:12px 14px;font:16px var(--body)}
+.sform{display:flex;gap:8px}.search{flex:1;min-width:0;background:#fff;color:#111;border:0;border-radius:10px;padding:12px 14px;font:16px var(--body)}.sbtn{flex:none;display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;border:0;border-radius:10px;padding:0 16px;font:600 15px var(--body);cursor:pointer}.sbtn:hover{background:var(--red2)}.sbtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2}
 .hero{margin:16px 0;border-radius:18px;padding:26px 22px;background:radial-gradient(circle at 85% 20%,rgba(255,59,48,.55),transparent 55%),linear-gradient(135deg,#1a0000,#070707);border:1px solid #3a0a0a;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
 .hero h1{margin:0;font:italic 900 clamp(38px,9vw,70px)/.9 var(--head);text-transform:uppercase}
 .hero h1 span{color:var(--red);display:block}
@@ -49,7 +49,7 @@ h2{font:italic 900 clamp(28px,6vw,40px)/1 var(--head);margin:30px 0 14px;text-tr
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
 .card:hover{border-color:var(--red)}
 .pic{background:radial-gradient(circle at 50% 40%,#2b2b2b,#0c0c0c);padding:12px 8px 0;position:relative}
-.pic svg{display:block;width:78%;margin:0 auto}
+.pic svg{display:block;width:78%;margin:0 auto}.pimg{display:none;width:100%;aspect-ratio:1;object-fit:contain;padding-bottom:10px}.pic.has{padding:12px 8px 0}.pic.has .pimg{display:block}.pic.has .jar{display:none}
 .tag{position:absolute;top:8px;left:8px;background:rgba(229,9,20,.18);color:#ff7a72;font-size:11px;padding:2px 9px;border-radius:99px}
 .info{padding:12px;display:flex;flex-direction:column;flex:1}
 .info small{color:var(--mute);font-size:13px}
@@ -67,7 +67,7 @@ footer{border-top:1px solid var(--line);padding:20px 0;color:var(--mute);font-si
 <body>
 <header><div class="wrap">
   <div class="top"><img data-logo alt="Fuel Your Fitness logo"><b>FUEL YOUR <i>FITNESS</i></b></div>
-  <input class="search" id="q" type="search" placeholder="Search brand or product" aria-label="Search">
+  <form class="sform" id="sf" role="search" action="#shop"><input class="search" id="q" type="search" placeholder="Search brand or product" aria-label="Search" enterkeyhint="search" autocomplete="off"><button class="sbtn" type="submit" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Search</button></form>
 </div></header>
 
 <main class="wrap" id="top">
@@ -136,12 +136,14 @@ function jar(b,c,n){
   t.forEach(function(x,i){s+='<text x="60" y="'+(ty+i*11)+'" text-anchor="middle" font-family="Barlow,Arial,sans-serif" font-weight="600" font-size="8.5" fill="'+tx+'">'+esc(x.toUpperCase())+'</text>'});
   return s+'</svg>';
 }
-var LOGO_DIR=""; // "" = logos sit next to index.html; use "logos/" if you keep them in a folder
 var EXT=["png","webp","svg","jpg"];
 function slug(b){return b.toLowerCase().replace(/[^a-z0-9]+/g,"-")}
 var FULL={"as-it-is":1,"avvatar":1};
-function logoImg(b,cls){return '<img class="'+cls+(FULL[slug(b)]?" full":"")+'" alt="" data-s="'+slug(b)+'" data-i="0" src="'+LOGO_DIR+slug(b)+'.png" onerror="nextLogo(this)">'}
-function nextLogo(i){var n=+i.dataset.i+1;if(n<EXT.length){i.dataset.i=n;i.src=LOGO_DIR+i.dataset.s+"."+EXT[n]}else i.remove()}
+function logoImg(b,cls){return '<img class="'+cls+(FULL[slug(b)]?" full":"")+'" alt="" data-s="'+slug(b)+'" data-i="0" src="logos/'+slug(b)+'.png" onerror="nextLogo(this)">'}
+function nextLogo(i){var n=+i.dataset.i+1;if(n<EXT.length){i.dataset.i=n;i.src="logos/"+i.dataset.s+"."+EXT[n]}else i.remove()}
+function pimg(b,n){var k=slug(b)+"-"+slug(n);return '<img class="pimg" alt="'+esc(b+" "+n)+'" loading="lazy" data-k="'+k+'" data-i="0" src="images/'+k+'.'+PEXT[0]+'" onload="this.parentNode.classList.add(\'has\')" onerror="nextPimg(this)">'}
+var PEXT=["webp","jpg","png","jpeg"];
+function nextPimg(i){var n=+i.dataset.i+1;if(n<PEXT.length){i.dataset.i=n;i.src="images/"+i.dataset.k+"."+PEXT[n]}else i.remove()}
 var brand="All",cat=-1,q="";
 var grid=document.getElementById("grid");
 function tile(label,inner,cls,key,type){return '<button class="tile" data-t="'+type+'" data-k="'+esc(key)+'" aria-pressed="false"><div class="ic '+cls+'">'+inner+'</div><span>'+esc(label)+'</span></button>'}
@@ -155,9 +157,10 @@ function sync(){
   [].forEach.call(chips.children,function(c){c.setAttribute("aria-pressed",+c.dataset.k===cat)});
 }
 function render(){
-  var t=q.toLowerCase();
-  var L=P.filter(function(p){return(brand==="All"||p.b===brand)&&(cat<0||p.c===cat)&&(p.b+" "+p.n+" "+C[p.c]).toLowerCase().indexOf(t)>-1});
-  grid.innerHTML=L.length?L.map(function(p,i){return '<article class="card"><div class="pic"><span class="tag">'+esc(C[p.c])+'</span>'+jar(p.b,p.c,p.n)+'</div><div class="info"><small><i class="bdg" style="background:'+B[p.b][1]+';color:'+B[p.b][2]+'">'+esc(B[p.b][0])+logoImg(p.b,"bl")+'</i> '+esc(p.b)+'</small><h3>'+esc(p.n)+'</h3><a class="btn" href="https://ig.me/m/fuelyourfitness.in" target="_blank" rel="noopener" data-m="'+esc("Hi! I want to order "+p.b+" "+p.n)+'">Order on Instagram</a></div></article>'}).join(""):'<p class="empty">No product found. Message us and we will check availability.</p>';
+  var w=q.toLowerCase().split(/\s+/).filter(Boolean);
+  var L=P.filter(function(p){var h=(p.b+" "+p.n+" "+C[p.c]).toLowerCase(),h2=h.replace(/[^a-z0-9]/g,"");return(brand==="All"||p.b===brand)&&(cat<0||p.c===cat)&&w.every(function(x){return h.indexOf(x)>-1||h2.indexOf(x.replace(/[^a-z0-9]/g,""))>-1})});
+  document.getElementById("shop").textContent=q.trim()?'Results for "'+q.trim()+'" ('+L.length+')':"Bestsellers";
+  grid.innerHTML=L.length?L.map(function(p,i){return '<article class="card"><div class="pic"><span class="tag">'+esc(C[p.c])+'</span>'+pimg(p.b,p.n)+'<div class="jar">'+jar(p.b,p.c,p.n)+'</div></div><div class="info"><small><i class="bdg" style="background:'+B[p.b][1]+';color:'+B[p.b][2]+'">'+esc(B[p.b][0])+logoImg(p.b,"bl")+'</i> '+esc(p.b)+'</small><h3>'+esc(p.n)+'</h3><a class="btn" href="https://ig.me/m/fuelyourfitness.in" target="_blank" rel="noopener" data-m="'+esc("Hi! I want to order "+p.b+" "+p.n)+'">Order on Instagram</a></div></article>'}).join(""):'<p class="empty">No product found. Message us and we will check availability.</p>';
   sync();
 }
 function toShop(){document.getElementById("shop").scrollIntoView()}
@@ -167,9 +170,14 @@ document.addEventListener("click",function(e){
   if(t){if(t.dataset.t==="b"){brand=brand===t.dataset.k?"All":t.dataset.k}else{cat=cat===+t.dataset.k?-1:+t.dataset.k}render();toShop();return}
   var c=e.target.closest(".chip");if(c){cat=+c.dataset.k;render();return}
 });
-document.getElementById("q").addEventListener("input",function(e){q=e.target.value;render()});
+var qi=document.getElementById("q");
+qi.addEventListener("input",function(e){q=e.target.value;render()});
+document.getElementById("sf").addEventListener("submit",function(e){
+  e.preventDefault();q=qi.value;brand="All";cat=-1;render();qi.blur();toShop();
+});
 var mq=document.getElementById("mq");mq.innerHTML+=mq.innerHTML;
 render();
 </script>
 </body>
 </html>
+
